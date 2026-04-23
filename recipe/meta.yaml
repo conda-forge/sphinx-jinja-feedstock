@@ -11,18 +11,18 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
   host:
     - pip
     - poetry
-    - python >=3.6
+    - python {{ python_min }}
   run:
     - docutils >=0.16
     - jinja2 >=2.11
-    - python >=3.6
+    - python >={{ python_min }}
     - sphinx >4.2.0
 
 test:
@@ -32,6 +32,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: "https://github.com/tardyp/sphinx-jinja"
